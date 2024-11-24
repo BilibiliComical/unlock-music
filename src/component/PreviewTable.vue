@@ -9,7 +9,7 @@
     </el-table-column>
     <el-table-column label="歌曲">
       <template #default="scope">
-        <span>{{ scope.row.title }}</span>
+        <p>{{ scope.row.title }}</p>
       </template>
     </el-table-column>
     <el-table-column label="歌手">
@@ -27,6 +27,7 @@
         <el-button circle icon="el-icon-video-play" type="success" @click="handlePlay(scope.$index, scope.row)">
         </el-button>
         <el-button circle icon="el-icon-download" @click="handleDownload(scope.row)"></el-button>
+        <el-button circle icon="el-icon-edit" @click="handleEdit(scope.row)"></el-button>
         <el-button circle icon="el-icon-delete" type="danger" @click="handleDelete(scope.$index, scope.row)">
         </el-button>
       </template>
@@ -54,6 +55,9 @@ export default {
     },
     handleDownload(row) {
       this.$emit('download', row);
+    },
+    handleEdit(row) {
+      this.$emit('edit', row);
     },
   },
 };

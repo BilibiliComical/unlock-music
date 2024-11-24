@@ -1,16 +1,23 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  },
   "name": "音乐解锁",
   "short_name": "音乐解锁",
   "icons": {
-    "128": "./img/icons/msapplication-icon-144x144.png"
+    "16": "img/icons/favicon-16x16.png",
+    "32": "img/icons/favicon-32x32.png",
+    "192": "img/icons/android-chrome-192x192.png",
+    "512": "img/icons/android-chrome-512x512.png"
   },
   "description": "在任何设备上解锁已购的加密音乐！",
   "permissions": ["storage"],
   "offline_enabled": true,
-  "options_page": "./index.html",
-  "homepage_url": "https://github.com/ix64/unlock-music",
-  "browser_action": {
+  "options_page": "index.html",
+  "homepage_url": "https://git.unlock-music.dev/um/web",
+  "action": {
+    "default_icon": "img/icons/favicon-32x32.png",
     "default_popup": "./popup.html"
   }
 }

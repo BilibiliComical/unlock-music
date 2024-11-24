@@ -13,14 +13,18 @@ import { DecryptResult } from '@/decrypt/entity';
 
 //prettier-ignore
 const MagicHeader = [
-  0x79, 0x65, 0x65, 0x6C, 0x69, 0x6F, 0x6E, 0x2D,
-  0x6B, 0x75, 0x77, 0x6F, 0x2D, 0x74, 0x6D, 0x65,
-]
+    0x79, 0x65, 0x65, 0x6C, 0x69, 0x6F, 0x6E, 0x2D,
+    0x6B, 0x75, 0x77, 0x6F, 0x2D, 0x74, 0x6D, 0x65,
+];
+const MagicHeader2 = [
+    0x79, 0x65, 0x65, 0x6C, 0x69, 0x6F, 0x6E, 0x2D,
+    0x6B, 0x75, 0x77, 0x6F, 0x00, 0x00, 0x00, 0x00,
+];
 const PreDefinedKey = 'MoOtOiTvINGwd2E6n0E1i7L5t2IoOoNk';
 
 export async function Decrypt(file: File, raw_filename: string, _: string): Promise<DecryptResult> {
   const oriData = new Uint8Array(await GetArrayBuffer(file));
-  if (!BytesHasPrefix(oriData, MagicHeader)) {
+    if (!BytesHasPrefix(oriData, MagicHeader) && !BytesHasPrefix(oriData, MagicHeader2)) {
     if (SniffAudioExt(oriData) === 'aac') {
       return await RawDecrypt(file, raw_filename, 'aac', false);
     }
@@ -38,7 +42,7 @@ export async function Decrypt(file: File, raw_filename: string, _: string): Prom
   let musicBlob = new Blob([audioData], { type: mime });
 
   const musicMeta = await metaParseBlob(musicBlob);
-  const { title, artist } = GetMetaFromFile(raw_filename, musicMeta.common.title, musicMeta.common.artist);
+  const { title, artist } = GetMetaFromFile(raw_filename, musicMeta.common.title, String(musicMeta.common.artists || musicMeta.common.artist || ""));
   return {
     album: musicMeta.common.album,
     picture: GetCoverFromFile(musicMeta),
