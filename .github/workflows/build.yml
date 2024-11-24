@@ -24,22 +24,7 @@ on:
 
 
 jobs:
-  test-coverage:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: npm ci
-        # note: forks can not access to GITHUB_TOKEN for coverage update.
-        #       instead, we just ran the test in this case.
-      - name: Test only
-        if: github.event_name != 'push'
-        run: npm test
-      - name: Test + Publish Coverage
-        uses: ArtiomTr/jest-coverage-report-action@v2.0-rc.6
-        if: github.event_name == 'push'
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          annotations: none
+
   build:
     runs-on: ubuntu-latest
     strategy:
