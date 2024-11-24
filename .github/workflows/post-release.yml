@@ -6,7 +6,7 @@ jobs:
   release-docker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
       - name: Setup vars
         id: vars
@@ -58,7 +58,7 @@ jobs:
           tar zxf modern.tar.gz -C ./dist
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
