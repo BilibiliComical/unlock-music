@@ -9,10 +9,10 @@
 - CI 自动构建已经部署，可以在 [um-packages] 下载
 
 > **WARNING**
-> 
+> 本仓库只做镜像，请勿在此提交issue
 
 [授权协议]: https://git.unlock-music.dev/um/web/src/branch/master/LICENSE
-[unlock-music/cli]: https://git.unlock-music.dev/um/cli
+[unlock-music/cli]: [https://github.com/BilibiliComical/unlock-music-cli-mirror]
 [`@unlock_music_chat`]: https://t.me/unlock_music_chat
 [um-packages]: https://git.unlock-music.dev/um/-/packages/generic/web-build/
 
